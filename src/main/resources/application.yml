@@ -1,0 +1,47 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-advanced-demo
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:advanced_demo
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+grpc:
+  server:
+    port: 9090
+
+logging:
+  level:
+    com.ibqy.spring.advanced: DEBUG
+    org.springframework.web: INFO
