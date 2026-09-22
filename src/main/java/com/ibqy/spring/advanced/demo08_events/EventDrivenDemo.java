@@ -132,6 +132,64 @@ public class EventDrivenDemo {
                     4. 事件顺序用 @Order 控制 → 但异步监听器的顺序不确定
                     5. 事件 vs 消息队列 → 进程内用事件（轻量），跨服务用消息队列（可靠）
                     """);
+
+            // ==================== 场景4：事件链（多阶段生命周期） ====================
+            System.out.println("\n========== 场景4：事件链 —— 订单完整生命周期 ==========");
+            System.out.println("  预期行为：");
+            System.out.println("    1. OrderCreatedEvent → 创建阶段监听器执行");
+            System.out.println("    2. OrderPaidEvent → 支付阶段监听器执行");
+            System.out.println("    3. OrderShippedEvent → 发货阶段监听器执行");
+            System.out.println("    4. 所有阶段通过 orderId 关联（correlationId 模式）");
+            System.out.println();
+
+            String chainOrderId = orderService.createOrder("赵六", 1299.00);
+            orderService.payOrder(chainOrderId, "ALIPAY", 1299.00);
+            orderService.shipOrder(chainOrderId, "顺丰速运");
+
+            Thread.sleep(1000);
+
+            // ==================== 场景5：条件监听（SpEL 过滤） ====================
+            System.out.println("\n========== 场景5：条件监听 —— SpEL 表达式过滤 ==========");
+            System.out.println("  预期行为：");
+            System.out.println("    1. 金额 > 500 → 触发大额订单审核");
+            System.out.println("    2. 金额 <= 500 → 走快速通道");
+            System.out.println("    3. 条件在 @EventListener(condition=...) 中声明");
+            System.out.println();
+
+            System.out.println("  --- 创建大额订单（金额 800）---");
+            orderService.createOrder("大额客户A", 800.00);
+            Thread.sleep(500);
+
+            System.out.println("  --- 创建小额订单（金额 200）---");
+            orderService.createOrder("小额客户B", 200.00);
+            Thread.sleep(500);
+
+            // ==================== 场景6：幂等处理（事件去重） ====================
+            System.out.println("\n========== 场景6：幂等处理 —— 事件去重 ==========");
+            System.out.println("  预期行为：");
+            System.out.println("    1. 第一次发布 → 正常处理");
+            System.out.println("    2. 重复发布相同 orderId → 跳过处理");
+            System.out.println("    3. 生产环境用 Redis 实现分布式去重");
+            System.out.println();
+
+            String idempotentId = "ORD-IDEM-001";
+            System.out.println("  --- 第一次发布事件 ---");
+            orderService.simulateDuplicateEvent(idempotentId, 500.00, "幂等测试客户");
+            Thread.sleep(500);
+
+            System.out.println("  --- 第二次发布相同事件（模拟重试）---");
+            orderService.simulateDuplicateEvent(idempotentId, 500.00, "幂等测试客户");
+            Thread.sleep(500);
+
+            System.out.println("""
+                    
+                    【进阶模式速记】
+                    6. 事件链模式 → 用 orderId 作为 correlationId 串联多阶段事件
+                    7. 条件监听 → SpEL 表达式在编译期决定监听器是否执行
+                    8. 幂等处理 → ConcurrentHashMap.newKeySet() 去重，生产用 Redis
+                    9. 自定义 Multicaster → 异常隔离，一个监听器报错不影响其他
+                    10. 生命周期事件 → ApplicationReadyEvent 做启动后初始化
+                    """);
         };
     }
 }

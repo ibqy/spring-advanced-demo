@@ -1,6 +1,8 @@
 package com.ibqy.spring.advanced.demo08_events.service;
 
 import com.ibqy.spring.advanced.demo08_events.event.OrderCreatedEvent;
+import com.ibqy.spring.advanced.demo08_events.event.OrderPaidEvent;
+import com.ibqy.spring.advanced.demo08_events.event.OrderShippedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
@@ -131,5 +133,60 @@ public class OrderService {
 
         System.out.println("  [OrderService] 注意：@TransactionalEventListener 默认不会触发！");
         System.out.println("  [OrderService] 只有 @EventListener 和 @Async 监听器会收到事件");
+    }
+
+    /**
+     * 支付订单（事件链第二阶段）
+     *
+     * <p>发布 {@link OrderPaidEvent}，触发支付确认、库存更新等下游操作。
+     *
+     * @param orderId       订单 ID（与创建事件的 orderId 一致，用于事件关联）
+     * @param paymentMethod 支付方式（ALIPAY / WECHAT_PAY / CREDIT_CARD）
+     * @param amount        支付金额
+     */
+    @Transactional
+    public void payOrder(String orderId, String paymentMethod, double amount) {
+        String paymentId = "PAY-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+
+        log.info("[订单服务] 订单 {} 支付: 方式={}, 金额={}", orderId, paymentMethod, amount);
+        System.out.printf("  [OrderService] 订单 %s 支付成功，支付单号: %s%n", orderId, paymentId);
+
+        OrderPaidEvent event = new OrderPaidEvent(orderId, paymentId, amount, paymentMethod);
+        eventPublisher.publishEvent(event);
+    }
+
+    /**
+     * 发货（事件链第三阶段）
+     *
+     * <p>发布 {@link OrderShippedEvent}，触发物流通知、签收超时计时等操作。
+     *
+     * @param orderId   订单 ID
+     * @param carrier   承运商
+     * @return 运单号
+     */
+    @Transactional
+    public String shipOrder(String orderId, String carrier) {
+        String trackingNo = "SF" + UUID.randomUUID().toString().substring(0, 10).toUpperCase().replace("-", "");
+
+        log.info("[订单服务] 订单 {} 发货: 承运商={}, 运单号={}", orderId, carrier, trackingNo);
+        System.out.printf("  [OrderService] 订单 %s 已发货，运单号: %s%n", orderId, trackingNo);
+
+        OrderShippedEvent event = new OrderShippedEvent(orderId, trackingNo, carrier);
+        eventPublisher.publishEvent(event);
+
+        return trackingNo;
+    }
+
+    /**
+     * 模拟重复发布同一事件（演示幂等处理）
+     *
+     * <p>实际场景中，重复事件通常来自消息队列重试或网络重发。
+     */
+    public void simulateDuplicateEvent(String orderId, double amount, String customer) {
+        log.info("[订单服务] 模拟重复事件: {}", orderId);
+        System.out.printf("  [OrderService] 模拟重复发布订单 %s 的创建事件...%n", orderId);
+
+        OrderCreatedEvent event = new OrderCreatedEvent(orderId, amount, customer);
+        eventPublisher.publishEvent(event);
     }
 }
