@@ -118,6 +118,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--
+                      显式指定主类：本项目每个 demo 都有自己的 main 方法（共 7 个候选），
+                      repackage 阶段无法自动确定唯一主类会直接构建失败
+                      （CI mvn verify 实测暴露：Unable to find a single main class）。
+                      指定应用主类后，java -jar 运行的是完整应用；各 demo 仍可在 IDE 中
+                      直接运行各自的 main 方法，不受影响。
+                    -->
+                    <mainClass>com.ibqy.spring.advanced.SpringAdvancedDemoApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
