@@ -28,7 +28,7 @@
 | Spring Framework | 7.0.8 | IoC / AOP / MVC / Security |
 | Spring Data JPA | 4.1.x | Specification / Projection / Auditing |
 | Spring Security | 6.4.x | Lambda DSL / JWT / 方法安全 |
-| gRPC | 1.68.1 | 高性能 RPC 通信 |
+| gRPC | 1.85.0 | 高性能 RPC 通信 |
 | Micrometer + Prometheus | — | 指标采集与可观测性 |
 | H2 Database | — | 内存数据库（教学演示） |
 | Maven | — | 构建工具 |
