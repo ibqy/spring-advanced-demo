@@ -2,6 +2,8 @@
 
 > 拦截器、全局异常处理、SSE 推送、自定义消息转换器 —— 打造企业级 Web 层。
 
+**代码**：[DemoController](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/controller/DemoController.java) · [WebMvcConfig](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/config/WebMvcConfig.java) · [PerformanceInterceptor](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/interceptor/PerformanceInterceptor.java) · [GlobalExceptionHandler](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/exception/GlobalExceptionHandler.java)
+
 ## 概述
 
 Spring MVC 是最常用的 Web 框架，但很多开发者只停留在 `@RestController` + `@RequestMapping` 的层面。本 Demo 深入展示 Spring MVC 的高级特性，包括拦截器链、统一异常处理、Server-Sent Events 实时推送、以及自定义消息转换器。

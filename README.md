@@ -4,12 +4,16 @@
 </p>
 
 <p align="center">
+  <a href="https://ibqy.github.io/spring-advanced-demo/"><img src="https://img.shields.io/badge/在线课件-2F6FEB?style=flat-square" alt="在线课件"></a>
   <img src="https://img.shields.io/badge/Java-21-2266EE?style=flat-square" alt="Java 21">
   <img src="https://img.shields.io/badge/Spring_Boot-4.1.1-2266EE?style=flat-square" alt="Spring Boot 4.1.1">
   <img src="https://img.shields.io/badge/Spring_Framework-7.0.8-2266EE?style=flat-square" alt="Spring Framework 7.0.8">
   <img src="https://img.shields.io/github/license/ibqy/spring-advanced-demo?style=flat-square" alt="License">
   <img src="https://img.shields.io/github/stars/ibqy/spring-advanced-demo?style=flat-square" alt="Stars">
 </p>
+
+> **课程位置** 阶段 1 · 架构与资金安全 — 第 3 站
+> [上一站 Spring Cloud](https://ibqy.github.io/spring-cloud-micro-demo/) → **Spring Boot 高阶** → [下一站 支付对接](https://ibqy.github.io/pay-teaching-demo/) ｜ [完整学习路线](https://ibqy.github.io/curriculum) ｜ [在线课件](https://ibqy.github.io/spring-advanced-demo/)
 
 ---
 

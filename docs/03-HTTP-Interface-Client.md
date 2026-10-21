@@ -2,6 +2,8 @@
 
 > 声明式 HTTP 客户端 —— 告别 RestTemplate 的样板代码。
 
+**代码**：[GitHubApi](../src/main/java/com/ibqy/spring/advanced/demo02_http_interface/GitHubApi.java)（`@HttpExchange` 接口定义） · [HttpInterfaceConfig](../src/main/java/com/ibqy/spring/advanced/demo02_http_interface/HttpInterfaceConfig.java)（代理装配） · [HttpInterfaceClientDemo](../src/main/java/com/ibqy/spring/advanced/demo02_http_interface/HttpInterfaceClientDemo.java)（调用演示）
+
 ## 概述
 
 Spring Framework 6.0 引入了 **HTTP Interface Client**（声明式 HTTP 客户端），让你像定义 Feign 客户端一样简洁，但更轻量、更灵活。本 Demo 展示如何用 `@HttpExchange` 注解定义一个 HTTP 接口，Spring 自动生成实现类。

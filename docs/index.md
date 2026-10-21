@@ -56,6 +56,24 @@ features:
     link: /11-Security6进阶
 ---
 
+## &#x1F4DA; 课程结构
+
+| 章节 | 主题 | 对应代码 |
+|------|------|----------|
+| [01 · 整体架构](/01-architecture) | 项目定位、包结构、配置与运行 | [SpringAdvancedDemoApplication](../src/main/java/com/ibqy/spring/advanced/SpringAdvancedDemoApplication.java) |
+| [02 · gRPC 自动配置](/02-gRPC自动配置) | 四种服务类型、自动配置扩展点 | [GrpcServerConfig](../src/main/java/com/ibqy/spring/advanced/demo01_grpc/GrpcServerConfig.java) · [GrpcServerDemo](../src/main/java/com/ibqy/spring/advanced/demo01_grpc/GrpcServerDemo.java) |
+| [03 · HTTP Interface Client](/03-HTTP-Interface-Client) | `@HttpExchange` 声明式客户端 | [GitHubApi](../src/main/java/com/ibqy/spring/advanced/demo02_http_interface/GitHubApi.java) · [HttpInterfaceConfig](../src/main/java/com/ibqy/spring/advanced/demo02_http_interface/HttpInterfaceConfig.java) |
+| [04 · Virtual Threads](/04-Virtual-Threads) | 平台线程 vs 虚拟线程、吞吐对比 | [VirtualThreadsDemo](../src/main/java/com/ibqy/spring/advanced/demo03_virtual_threads/VirtualThreadsDemo.java) |
+| [05 · AOT & Native Image](/05-AOT-Native-Image) | 编译时优化、GraalVM 原生镜像 | [AotNativeDemo](../src/main/java/com/ibqy/spring/advanced/demo04_aot_native/AotNativeDemo.java) |
+| [06 · 可观测性](/06-可观测性) | Micrometer + Prometheus + OTel | [ObservabilityDemo](../src/main/java/com/ibqy/spring/advanced/demo05_observability/ObservabilityDemo.java) · [CustomObservationConfig](../src/main/java/com/ibqy/spring/advanced/demo05_observability/CustomObservationConfig.java) |
+| [07 · Spring MVC 进阶](/07-MVC进阶) | 拦截器、全局异常、SSE、消息转换 | [DemoController](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/controller/DemoController.java) · [PerformanceInterceptor](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/interceptor/PerformanceInterceptor.java) |
+| [08 · Spring Data JPA 进阶](/08-Data-JPA进阶) | Specification / Projection / EntityGraph / Auditing | [ArticleRepository](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/repository/ArticleRepository.java) · [ArticleSpecifications](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/spec/ArticleSpecifications.java) |
+| [09 · 事件驱动机制](/09-事件驱动) | 事务事件、事件链、条件监听、幂等 | [OrderService](../src/main/java/com/ibqy/spring/advanced/demo08_events/service/OrderService.java) · [OrderEventListener](../src/main/java/com/ibqy/spring/advanced/demo08_events/listener/OrderEventListener.java) |
+| [10 · Actuator 扩展](/10-Actuator扩展) | `@Endpoint` 自定义端点、HealthIndicator | [AppInfoEndpoint](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/endpoint/AppInfoEndpoint.java) · [ExternalApiHealthIndicator](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/health/ExternalApiHealthIndicator.java) |
+| [11 · Security 6 进阶](/11-Security6进阶) | Lambda DSL、JWT、方法安全 | [SecurityConfig](../src/main/java/com/ibqy/spring/advanced/demo10_security/config/SecurityConfig.java) · [JwtUtil](../src/main/java/com/ibqy/spring/advanced/demo10_security/util/JwtUtil.java) |
+
+> 包级全景（10 个 Demo 的职责分工）见 [01 · 整体架构 · 代码地图](/01-architecture#代码地图)。
+
 ## &#x1F680; 快速开始
 
 ::: code-group
@@ -99,3 +117,10 @@ http://localhost:8080/actuator
 | gRPC | 1.68.1 | 高性能 RPC |
 | Micrometer | — | 指标采集 · Prometheus |
 | H2 | — | 内存数据库（教学演示） |
+
+## &#x1F9ED; 在路线中的位置
+
+> **Java × AI 进阶路线** · 阶段 1「架构与资金安全」第 3 站  
+> **Spring Boot 高阶特性** → 上一站：[Spring Cloud 微服务](https://ibqy.github.io/spring-cloud-micro-demo/) · 下一站：[支付对接实战](https://ibqy.github.io/pay-teaching-demo/)  
+> 完整路线：[ibqy.github.io/curriculum](https://ibqy.github.io/curriculum)
+

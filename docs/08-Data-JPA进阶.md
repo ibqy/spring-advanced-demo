@@ -22,6 +22,8 @@ Spring Data JPA
 
 ## 代码走读
 
+**核心类**：[ArticleRepository](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/repository/ArticleRepository.java) · [ArticleSpecifications](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/spec/ArticleSpecifications.java) · [ArticleSummary](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/projection/ArticleSummary.java) · [Article](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/entity/Article.java) · [JpaConfig](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/config/JpaConfig.java)
+
 ### 1. Specification 动态查询
 
 ```java

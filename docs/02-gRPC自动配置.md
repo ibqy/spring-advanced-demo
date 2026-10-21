@@ -45,6 +45,8 @@ message HelloResponse {
 
 ## 代码走读
 
+**核心类**：[GrpcServerConfig](../src/main/java/com/ibqy/spring/advanced/demo01_grpc/GrpcServerConfig.java)（自动配置扩展点） · [GrpcServerDemo](../src/main/java/com/ibqy/spring/advanced/demo01_grpc/GrpcServerDemo.java)（`ServerServiceDefinition` + 演示端点）
+
 ### 1. 自动配置原理
 
 Spring Boot 通过 `grpc-server-spring-boot-starter` 实现自动配置：

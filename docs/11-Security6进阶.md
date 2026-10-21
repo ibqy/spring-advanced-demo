@@ -2,6 +2,8 @@
 
 > Lambda DSL 配置、JWT 无状态认证、@PreAuthorize 方法安全 —— 构建零信任架构。
 
+**代码**：[SecurityConfig](../src/main/java/com/ibqy/spring/advanced/demo10_security/config/SecurityConfig.java)（Lambda DSL） · [JwtUtil](../src/main/java/com/ibqy/spring/advanced/demo10_security/util/JwtUtil.java) · [CustomUserDetailsService](../src/main/java/com/ibqy/spring/advanced/demo10_security/service/CustomUserDetailsService.java) · [SecureController](../src/main/java/com/ibqy/spring/advanced/demo10_security/controller/SecureController.java)
+
 ## 概述
 
 Spring Security 6 带来了全面的 Lambda DSL 配置风格、更简洁的安全过滤链、以及对 JWT 无状态认证的深度支持。本 Demo 展示如何用最现代的 API 构建完整的安全体系。

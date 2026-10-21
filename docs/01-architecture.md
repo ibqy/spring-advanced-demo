@@ -53,78 +53,73 @@ Spring Advanced Demo 是一个 **教学优先** 的 Spring Boot 4.1.1 项目，�
 
 ```
 spring-advanced-demo/
-├── src/
-│   └── main/
-│       ├── java/com/ibqy/spring/advanced/
-│       │   ├── SpringAdvancedDemoApplication.java    # 启动类
-│       │   │
-│       │   ├── demo01/grpc/                          # gRPC 服务端
-│       │   │   ├── config/                           # gRPC 自动配置
-│       │   │   ├── service/                          # gRPC Service 实现
-│       │   │   └── interceptor/                      # gRPC 拦截器
-│       │   │
-│       │   ├── demo02/httpclient/                    # HTTP Interface Client
-│       │   │   ├── client/                           # @HttpExchange 接口
-│       │   │   ├── config/                           # WebClient 配置
-│       │   │   └── controller/                       # 演示控制器
-│       │   │
-│       │   ├── demo03/virtualthreads/                # Virtual Threads
-│       │   │   ├── controller/                       # 并发演示
-│       │   │   ├── service/                          # 虚拟线程服务
-│       │   │   └── config/                           # 线程池配置
-│       │   │
-│       │   ├── demo04/aot/                           # AOT & Native Image
-│       │   │   ├── config/                           # AOT 注册
-│       │   │   └── runtime/                          # 运行时提示
-│       │   │
-│       │   ├── demo05/observability/                 # 可观测性
-│       │   │   ├── config/                           # Micrometer 配置
-│       │   │   ├── service/                          # 指标埋点
-│       │   │   └── controller/                       # 演示端点
-│       │   │
-│       │   ├── demo06/mvc/                           # Spring MVC 进阶
-│       │   │   ├── config/                           # MVC 配置
-│       │   │   ├── controller/                       # 控制器示例
-│       │   │   ├── exception/                        # 全局异常处理
-│       │   │   ├── interceptor/                      # 拦截器
-│       │   │   └── converter/                        # 消息转换器
-│       │   │
-│       │   ├── demo07/jpa/                           # Spring Data JPA 进阶
-│       │   │   ├── entity/                           # 实体类
-│       │   │   ├── repository/                       # Repository 接口
-│       │   │   ├── service/                          # 查询服务
-│       │   │   └── config/                           # Auditing 配置
-│       │   │
-│       │   ├── demo08/event/                         # 事件驱动
-│       │   │   ├── event/                            # 事件定义
-│       │   │   ├── listener/                         # 事件监听器
-│       │   │   └── publisher/                        # 事件发布器
-│       │   │
-│       │   ├── demo09/actuator/                      # 自定义 Actuator
-│       │   │   ├── endpoint/                         # 自定义端点
-│       │   │   └── health/                           # 健康指示器
-│       │   │
-│       │   └── demo10/security/                      # Spring Security 6
-│       │       ├── config/                           # Security 配置
-│       │       ├── jwt/                              # JWT 工具
-│       │       ├── controller/                       # 安全控制器
-│       │       └── model/                            # 用户模型
-│       │
-│       └── resources/
-│           ├── application.yml                       # 主配置
-│           └── proto/                                # Protobuf 定义
-│               └── demo01/
-│                   └── greeting.proto
-│
-├── docs/                                             # VitePress 文档
-│   ├── .vitepress/
-│   │   └── config.mts
-│   ├── index.md
-│   └── *.md
-│
-├── pom.xml
-└── README.md
+├── src/main/java/com/ibqy/spring/advanced/
+│   ├── SpringAdvancedDemoApplication.java      # 启动类
+│   ├── demo01_grpc/                            # gRPC 服务端（文档 02）
+│   │   ├── GrpcServerConfig.java               # 自动配置扩展点
+│   │   └── GrpcServerDemo.java                 # ServerServiceDefinition + 演示端点
+│   ├── demo02_http_interface/                  # HTTP Interface Client（文档 03）
+│   │   ├── GitHubApi.java                      # @HttpExchange 接口定义
+│   │   ├── HttpInterfaceConfig.java             # 客户端装配
+│   │   └── HttpInterfaceClientDemo.java         # 演示端点
+│   ├── demo03_virtual_threads/
+│   │   └── VirtualThreadsDemo.java              # 虚拟线程并发对比（文档 04）
+│   ├── demo04_aot_native/
+│   │   └── AotNativeDemo.java                   # AOT / Native 说明与端点（文档 05）
+│   ├── demo05_observability/                    # 可观测性（文档 06）
+│   │   ├── ObservabilityDemo.java
+│   │   └── CustomObservationConfig.java
+│   ├── demo06_mvc_advanced/                     # MVC 进阶（文档 07）
+│   │   ├── MvcAdvancedDemo.java
+│   │   ├── config/WebMvcConfig.java
+│   │   ├── controller/DemoController.java
+│   │   ├── exception/                           # BusinessException / GlobalExceptionHandler
+│   │   └── interceptor/PerformanceInterceptor.java
+│   ├── demo07_data_jpa/                         # JPA 进阶（文档 08）
+│   │   ├── JpaAdvancedDemo.java
+│   │   ├── config/JpaConfig.java
+│   │   ├── entity/                              # Article / Tag
+│   │   ├── projection/ArticleSummary.java
+│   │   ├── repository/ArticleRepository.java
+│   │   └── spec/ArticleSpecifications.java
+│   ├── demo08_events/                           # 事件驱动（文档 09）
+│   │   ├── EventDrivenDemo.java
+│   │   ├── config/EventMulticasterConfig.java
+│   │   ├── event/                               # OrderCreatedEvent / OrderPaidEvent / OrderShippedEvent
+│   │   ├── listener/                            # Order / Conditional / EventChain / Idempotent / Lifecycle
+│   │   └── service/OrderService.java
+│   ├── demo09_actuator/                         # Actuator 扩展（文档 10）
+│   │   ├── CustomActuatorDemo.java
+│   │   ├── endpoint/                            # AppInfoEndpoint / AppInfoEndpointWebExtension
+│   │   └── health/ExternalApiHealthIndicator.java
+│   └── demo10_security/                         # Security 6 进阶（文档 11）
+│       ├── SecurityAdvancedDemo.java
+│       ├── config/SecurityConfig.java
+│       ├── controller/SecureController.java
+│       ├── service/CustomUserDetailsService.java
+│       └── util/JwtUtil.java
+├── src/main/resources/application.yml
+├── docs/                                        # VitePress 文档
+└── pom.xml
 ```
+
+> 注意：本项目**没有** `.proto` 文件。`GrpcServerDemo` 直接用 gRPC 原生 API 手动构建 `ServerServiceDefinition`，把 proto 定义以注释形式展示，避免为教学引入 protoc 编译链。
+
+## 代码地图
+
+| 包 | 关键类 | 职责 |
+|----|--------|------|
+| 根包 | [SpringAdvancedDemoApplication](../src/main/java/com/ibqy/spring/advanced/SpringAdvancedDemoApplication.java) | 启动入口 |
+| `demo01_grpc` | [GrpcServerConfig](../src/main/java/com/ibqy/spring/advanced/demo01_grpc/GrpcServerConfig.java) / [GrpcServerDemo](../src/main/java/com/ibqy/spring/advanced/demo01_grpc/GrpcServerDemo.java) | 自动配置扩展点、`ServerServiceDefinition` 手写实现 |
+| `demo02_http_interface` | [GitHubApi](../src/main/java/com/ibqy/spring/advanced/demo02_http_interface/GitHubApi.java) / [HttpInterfaceConfig](../src/main/java/com/ibqy/spring/advanced/demo02_http_interface/HttpInterfaceConfig.java) / [HttpInterfaceClientDemo](../src/main/java/com/ibqy/spring/advanced/demo02_http_interface/HttpInterfaceClientDemo.java) | `@HttpExchange` 声明式接口、代理装配、调用演示 |
+| `demo03_virtual_threads` | [VirtualThreadsDemo](../src/main/java/com/ibqy/spring/advanced/demo03_virtual_threads/VirtualThreadsDemo.java) | 平台线程 vs 虚拟线程吞吐对比 |
+| `demo04_aot_native` | [AotNativeDemo](../src/main/java/com/ibqy/spring/advanced/demo04_aot_native/AotNativeDemo.java) | AOT 处理与 Native Image 说明、运行时探测 |
+| `demo05_observability` | [ObservabilityDemo](../src/main/java/com/ibqy/spring/advanced/demo05_observability/ObservabilityDemo.java) / [CustomObservationConfig](../src/main/java/com/ibqy/spring/advanced/demo05_observability/CustomObservationConfig.java) | 指标埋点、Observation 自定义 |
+| `demo06_mvc_advanced` | [DemoController](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/controller/DemoController.java) / [PerformanceInterceptor](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/interceptor/PerformanceInterceptor.java) / [GlobalExceptionHandler](../src/main/java/com/ibqy/spring/advanced/demo06_mvc_advanced/exception/GlobalExceptionHandler.java) | 拦截器链、统一异常、SSE、消息转换 |
+| `demo07_data_jpa` | [ArticleRepository](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/repository/ArticleRepository.java) / [ArticleSpecifications](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/spec/ArticleSpecifications.java) / [ArticleSummary](../src/main/java/com/ibqy/spring/advanced/demo07_data_jpa/projection/ArticleSummary.java) | Specification 动态查询、Projection、EntityGraph、Auditing |
+| `demo08_events` | [OrderService](../src/main/java/com/ibqy/spring/advanced/demo08_events/service/OrderService.java) / [OrderEventListener](../src/main/java/com/ibqy/spring/advanced/demo08_events/listener/OrderEventListener.java) / [IdempotentOrderListener](../src/main/java/com/ibqy/spring/advanced/demo08_events/listener/IdempotentOrderListener.java) | 事务事件、事件链、条件监听、幂等 |
+| `demo09_actuator` | [AppInfoEndpoint](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/endpoint/AppInfoEndpoint.java) / [AppInfoEndpointWebExtension](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/endpoint/AppInfoEndpointWebExtension.java) / [ExternalApiHealthIndicator](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/health/ExternalApiHealthIndicator.java) | `@Endpoint` 自定义端点、Web 扩展、业务健康检查 |
+| `demo10_security` | [SecurityConfig](../src/main/java/com/ibqy/spring/advanced/demo10_security/config/SecurityConfig.java) / [JwtUtil](../src/main/java/com/ibqy/spring/advanced/demo10_security/util/JwtUtil.java) / [CustomUserDetailsService](../src/main/java/com/ibqy/spring/advanced/demo10_security/service/CustomUserDetailsService.java) / [SecureController](../src/main/java/com/ibqy/spring/advanced/demo10_security/controller/SecureController.java) | Lambda DSL、JWT 签发校验、`@PreAuthorize` 方法安全 |
 
 ## 配置说明
 
@@ -176,7 +171,7 @@ mvn spring-boot:run
 
 ### 2. 只学习某个 Demo
 
-每个 Demo 位于独立包中（`demo01` ~ `demo10`），可按需查看代码和文档。
+每个 Demo 位于独立包中（`demo01_grpc` ~ `demo10_security`），可按需查看代码和文档。
 
 ### 3. 构建原生镜像（Demo04）
 

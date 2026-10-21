@@ -2,6 +2,8 @@
 
 > 编译时优化与 GraalVM 原生镜像 —— 毫秒级启动、极低内存。
 
+**代码**：[AotNativeDemo](../src/main/java/com/ibqy/spring/advanced/demo04_aot_native/AotNativeDemo.java)
+
 ## 概述
 
 Spring Boot 3.x 引入了 **AOT（Ahead-of-Time）处理**，Spring Framework 7.0 / Boot 4.1 进一步优化了这一机制。AOT 在编译时完成 Bean 定义解析、代理生成等工作，使运行时启动更快。配合 GraalVM 可生成 **原生镜像（Native Image）**，实现毫秒级启动。

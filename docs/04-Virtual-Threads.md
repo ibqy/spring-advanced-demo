@@ -58,6 +58,8 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 
 ## 代码走读
 
+**核心类**：[VirtualThreadsDemo](../src/main/java/com/ibqy/spring/advanced/demo03_virtual_threads/VirtualThreadsDemo.java)
+
 ### 1. 启用虚拟线程
 
 ```yaml

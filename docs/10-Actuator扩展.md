@@ -38,6 +38,8 @@ Spring Boot Actuator 提供了生产级的监控和管理能力。除了内置�
 
 ## 代码走读
 
+**核心类**：[AppInfoEndpoint](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/endpoint/AppInfoEndpoint.java) · [AppInfoEndpointWebExtension](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/endpoint/AppInfoEndpointWebExtension.java) · [ExternalApiHealthIndicator](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/health/ExternalApiHealthIndicator.java) · [CustomActuatorDemo](../src/main/java/com/ibqy/spring/advanced/demo09_actuator/CustomActuatorDemo.java)
+
 ### 1. 自定义 Endpoint
 
 ```java

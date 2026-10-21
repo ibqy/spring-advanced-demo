@@ -26,6 +26,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
+      { text: '学习路径', link: 'https://ibqy.github.io/curriculum' },
       { text: 'GitHub', link: 'https://github.com/ibqy/spring-advanced-demo' }
     ],
     sidebar: [
@@ -48,6 +49,11 @@ export default defineConfig({
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ibqy/spring-advanced-demo' }
-    ]
+    ],
+    search: { provider: 'local' },
+    outline: { level: [2, 3], label: '本页目录' },
+    docFooter: { prev: '上一篇', next: '下一篇' },
+    sidebarMenuLabel: '文档',
+    returnToTopLabel: '回到顶部'
   }
 })
